@@ -29,8 +29,21 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProduct (@RequestParam int id) {
-        return ResponseEntity.ok(this.productService.getProduct(id));
+    public ResponseEntity<Product> getProduct ( @PathVariable("id") String id ) {
+        int productId = Integer.parseInt(id);
+        return ResponseEntity.ok(this.productService.getProduct(productId));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Product> deleteProduct ( @PathVariable("id") String id ) {
+        int productId = Integer.parseInt(id);
+        return new ResponseEntity.ok(this.productService.deleteProduct(productId));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> updateProduct ( @PathVariable("id") String id, @RequestBody ProductInformDto productInform ) {
+        int productId = Integer.parseInt(id);
+        return new ResponseEntity.ok(this.productService.updateProduct(productId, productInform));
     }
 
 }

@@ -1,5 +1,6 @@
 package com.buyline.buyline.service;
 
+import com.buyline.buyline.dto.ProductInformDto;
 import com.buyline.buyline.model.Product;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -30,4 +31,29 @@ public class ProductService {
         }
         return null;
     }
+
+    // Deleting Product
+    public Product deleteProduct ( int id ) {
+        for ( Product product: products ) {
+            if (product.getProductId() == id ) {
+                products.remove(product);
+                return product;
+            }
+        }
+        return null;
+    }
+
+    public Product updateProduct ( int id, ProductInformDto productInform ) {
+        for ( Product product: products ) {
+            if ( product.getProductId() == id ) {
+                product.setProductName(productInform.getProductName());
+                product.setProductDescription(productInform.getProductDescription());
+                product.setProductPrice(productInform.getProductPrice());
+                product.setProductRating(productInform.getProductRating());
+                return product;
+            }
+        }
+        return null;
+    }
+
 }
