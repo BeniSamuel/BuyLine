@@ -3,6 +3,8 @@ package com.buyline.buyline.controller;
 import com.buyline.buyline.dto.ProductInformDto;
 import com.buyline.buyline.model.Product;
 import com.buyline.buyline.service.ProductService;
+import com.buyline.buyline.utils.ApiResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -35,15 +37,21 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Product> deleteProduct ( @PathVariable("id") String id ) {
+    public ResponseEntity<ApiResponse<Product>> deleteProduct ( @PathVariable("id") String id ) {
         int productId = Integer.parseInt(id);
-        return new ResponseEntity.ok(this.productService.deleteProduct(productId));
+        Product deleteProduct = this.productService.deleteProduct(productId);
+        ApiResponse response = new ApiResponse("Deleted Product", deleteProduct, HttpStatus.OK.value());
+        return new ResponseEntity<>(response, HttpStatus.OK);
+
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct ( @PathVariable("id") String id, @RequestBody ProductInformDto productInform ) {
+    public ResponseEntity<ApiResponse<Product>> updateProduct (@PathVariable("id") String id, @RequestBody ProductInformDto productInform ) {
         int productId = Integer.parseInt(id);
-        return new ResponseEntity.ok(this.productService.updateProduct(productId, productInform));
+        Product updateProduct = this.productService.updateProduct(productId, productInform);
+        ApiResponse response = new ApiResponse("Updated Product", updateProduct, HttpStatus.OK.value());
+        return new ResponseEntity<>(response, HttpStatus.OK);
+
     }
 
 }
