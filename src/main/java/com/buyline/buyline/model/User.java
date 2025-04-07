@@ -1,18 +1,29 @@
 package com.buyline.buyline.model;
 
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name= "user")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int userId;
+
+    @Column
     private String username;
+
+    @Column(unique = true)
     private String email;
+
+    @Column
     private String password;
+
+    @Column(unique = true)
     private int phone;
 
-    public User ( String name, String email, String password, int phone ) {
-        this.username = name;
-        this.email = email;
-        this.password = password;
-        this.phone = phone;
-    }
+
 
     public String getUsername () { return this.username; }
     public String getEmail () { return this.email; }
@@ -24,4 +35,12 @@ public class User {
     public void setEmail ( String name ) { this.email = email; }
     public void setPassword ( String password ) { this.password = password; }
     public void setPhone ( int phone ) { this.phone = phone; }
+
+    public void setUserId(int id) {
+        this.userId = id;
+    }
+
+    public int getId() {
+        return userId;
+    }
 }

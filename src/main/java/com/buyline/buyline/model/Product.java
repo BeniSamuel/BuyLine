@@ -1,20 +1,23 @@
 package com.buyline.buyline.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+@Table(name= "products")
 public class Product {
 
-    private int productId = 0;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int productId;
     private String productName;
     private String productDescription;
     private Double productPrice;
     private Float productRating;
 
-    public Product ( String name, String description, Double price, Float rating ) {
-        this.productId ++;
-        productName = name;
-        productDescription = description;
-        productPrice = price;
-        productRating = rating;
-    }
 
     public void setProductName ( String name ) { this.productName = name; }
     public void setProductDescription ( String productDescription ) { this.productDescription = productDescription; }
