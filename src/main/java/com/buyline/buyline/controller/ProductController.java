@@ -51,7 +51,6 @@ public class ProductController {
         Product updateProduct = this.productService.updateProduct(productId, productInform);
         ApiResponse response = new ApiResponse("Updated Product", updateProduct, HttpStatus.OK.value());
         return new ResponseEntity<>(response, HttpStatus.OK);
-
     }
 
 }

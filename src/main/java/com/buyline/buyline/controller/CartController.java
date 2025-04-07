@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.buyline.buyline.model.Cart;
 
 @RestController
-@RequestMapping("/api/cart")
+@RequestMapping(path="/api/v1/cart")
 public class CartController {
     private final CartService cartService;
 
     public CartController ( CartService cartService ) {
         this.cartService = cartService;
     }
+
+    
 
 }

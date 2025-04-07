@@ -21,6 +21,9 @@ public class AuthService {
     public String loginUser ( String email, String password ) {
        User user = this.userService.getUserByEmail(email);
        if (user == null) return "Invalid Credentials";
+
+
+
        return "Success";
     }
 }
